@@ -1,7 +1,7 @@
-# widgets
+# @baseflow/widgets
 
-[![NPM version](https://img.shields.io/npm/v/widgets.svg?style=flat)](https://npmjs.org/package/widgets)
-[![NPM downloads](http://img.shields.io/npm/dm/widgets.svg?style=flat)](https://npmjs.org/package/widgets)
+[![NPM version](https://img.shields.io/npm/v/@baseflow/widgets.svg?style=flat)](https://npmjs.org/package/@baseflow/widgets)
+[![NPM downloads](http://img.shields.io/npm/dm/@baseflow/widgets.svg?style=flat)](https://npmjs.org/package/@baseflow/widgets)
 
 A react library developed with dumi
 

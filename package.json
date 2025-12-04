@@ -1,5 +1,5 @@
 {
-  "name": "widgets",
+  "name": "@baseflow/widgets",
   "version": "0.0.1",
   "description": "A react library developed with dumi",
   "module": "dist/index.js",
@@ -49,8 +49,9 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "antd": "^6.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
@@ -62,6 +63,7 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "antd": "^6.0.0"
   }
 }
