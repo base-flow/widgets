@@ -1,0 +1,66 @@
+@import "../node_modules/@baseflow/react/dist/esm/baseflow.css";
+
+.nd-form-layout {
+  .form-item {
+    margin-bottom: 20px;
+  }
+
+  .label-item {
+    padding-bottom: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+
+    &::after {
+      content: ":";
+    }
+
+    &.require {
+      &::before {
+        margin-right: 3px;
+        color: var(--bf-special);
+        content: "*";
+      }
+    }
+
+    em {
+      margin-right: 3px;
+      font-style: normal;
+      color: var(--bf-special);
+    }
+  }
+
+  .label-item-remark {
+    float: right;
+    font-size: 12px;
+    color: var(--bf-tx-lesser);
+  }
+}
+
+.nd-grad-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  text-align: center;
+
+  > div {
+    width: 190px;
+    padding: 10px 0;
+    cursor: pointer;
+
+    &:hover {
+      background: #0001;
+    }
+  }
+
+  .anticon {
+    font-size: 20px;
+    pointer-events: none;
+  }
+
+  cite {
+    display: block;
+    padding-top: 10px;
+    font-size: 12px;
+    font-style: normal;
+  }
+}

@@ -30,7 +30,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.biome": "explicit",
     "source.organizeImports.biome": "explicit",
-    "source.fixAll.stylelint": "explicit"
+    "source.fixAll.stylelint": "explicit",
+    "source.fixAll.markdownlint": "explicit"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
