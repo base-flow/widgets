@@ -22,7 +22,7 @@ group:
 
 | 属性   | 类型                     | 默认值   | 必填 | 说明 |
 | ------ | ---------------------- | -------- | ---- | ---- |
-| value  | `string \| string[] \｜ undefined`      |
+| value  | `string \| string[] \| undefined`      |
 | onChange | `(value?: string \| string[]) => void` |
 | options | `{ value: string; label: string }[]` |       |    必填    |  下拉选项，value为非空字符   |
 | multiple | `boolean` |       |        |  是否多选，为true时value为数组  |

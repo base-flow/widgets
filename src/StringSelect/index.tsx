@@ -20,7 +20,7 @@ export interface StringSelectProps<V extends string | string[]> {
   variant?: "filled" | "borderless";
 }
 
-const Component = <V extends string | string[]>(props: StringSelectProps<V>) => {
+const Component = <V extends string | string[]>(props: StringSelectProps<V>): ReactNode => {
   const { value, className, block, multiple, placeholder = BaseLang.requiredPrompt, ...others } = props;
 
   return <Select {...others} value={value || undefined} mode={multiple ? "multiple" : undefined} placeholder={placeholder} className={classnames(className, { "ͼbaseflow-sr-inputBlock": block })} />;

@@ -1,13 +1,14 @@
 {
   "name": "@baseflow/widgets",
+  "type": "module",
+  "private": true,
   "version": "0.0.1",
-  "description": "A react library developed with dumi",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "npm run dev",
     "dev": "dumi dev",
-    "build": "father build",
+    "build:doc": "father build",
     "build:watch": "father dev",
     "docs:build": "dumi build",
     "docs:preview": "dumi preview",
@@ -16,7 +17,11 @@
     "lint": "npm run lint:es && npm run lint:css",
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
-    "prepublishOnly": "father doctor && npm run build"
+    "prepublishOnly": "father doctor && npm run build",
+    "build:dts": "tsup",
+    "build:js": "rollup -c",
+    "build": "npm run build:dts && npm run build:js",
+    "publish": "npm publish ./npm"
   },
   "authors": [],
   "license": "MIT",
@@ -45,15 +50,22 @@
       "prettier --parser=typescript --write"
     ]
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "antd": "^6.0.0",
-    "path-to-regexp": "^8.3.0",
-    "@baseflow/react": "^0.0.4"
+    "dayjs": "*",
+    "@baseflow/react": "^0.0.5"
+  },
+  "externals": {
+    "react": true,
+    "react-dom": true,
+    "antd": true,
+    "dayjs": true,
+    "@baseflow/react": true
+  },
+  "dependencies": {
+    "path-to-regexp": "^8.3.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
@@ -76,10 +88,27 @@
     "father": "^4.1.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "@rollup/plugin-alias": "~5.1.1",
+    "@rollup/plugin-babel": "~6.0.4 ",
+    "@rollup/plugin-commonjs": "~ 28.0.6",
+    "@rollup/plugin-node-resolve": "~16.0.1",
+    "@rollup/plugin-replace": "~6.0.2",
+    "@rollup/plugin-terser": "~0.4.4",
+    "@rollup/plugin-typescript": "~12.1.4",
+    "@rollup/plugin-url": "^8.0.2",
+    "rollup": "^4.45.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-css-only": "~4.5.2",
+    "rollup-plugin-delete": "^3.0.1",
+    "rollup-plugin-dts": "^6.2.3",
+    "rollup-plugin-esbuild": "^6.2.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-web-worker-loader": "~1.7.0",
+    "tsup": "^8.5.1",
+    "rimraf": "^6.1.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "antd": "^6.0.0",
-    "path-to-regexp": "^8.3.0",
-    "@baseflow/react": "^0.0.4"
+    "@baseflow/react": "^0.0.5"
   }
 }

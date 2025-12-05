@@ -1,0 +1,33 @@
+{
+  "name": "@baseflow/widgets",
+  "type": "module",
+  "version": "0.0.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "unpkg": "dist/umd/index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "dist/",
+    "types/"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "browserslist": [
+    "chrome >= 80"
+  ],
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "antd": "^6.0.0",
+    "dayjs": "*",
+    "@baseflow/react": "^0.0.5"
+  },
+  "dependencies": {
+    "path-to-regexp": "^8.3.0"
+  }
+}
