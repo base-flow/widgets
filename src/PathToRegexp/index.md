@@ -1,7 +1,8 @@
 ---
 category: Components
 title: PathToRegexp
-toc: content
+toc: false
+order: 2
 group:
   title: 工具函数
   order: 2

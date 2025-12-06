@@ -109,6 +109,6 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "antd": "^6.0.0",
-    "@baseflow/react": "^0.0.5"
+    "@baseflow/react": "^0.0.6"
   }
 }

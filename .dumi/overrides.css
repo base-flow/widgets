@@ -1,0 +1,7 @@
+.dumi-default-header-left {
+  width: 300px;
+}
+
+.dumi-default-table-content td:first-child {
+  white-space: nowrap;
+}
