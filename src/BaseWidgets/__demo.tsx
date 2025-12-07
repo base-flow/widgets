@@ -1,10 +1,10 @@
 import { BaseWidgets } from "@baseflow/react";
 import { Button } from "antd";
-/** 节点开发中无需引入，平台已包含 */
 import Config from "./__utils";
 
 export default () => {
   return (
+    /** <Config>节点开发中平台已包含 */
     <Config>
       <div className="nd-grad-layout">
         <Button
