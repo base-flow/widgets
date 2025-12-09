@@ -1,6 +1,6 @@
 import { BaseLang, classnames, useEvent } from "@baseflow/react";
 import { Input } from "antd";
-import type { FC, ReactNode } from "react";
+import type { CSSProperties, FC, ReactNode } from "react";
 import { memo, useMemo, useState } from "react";
 
 export interface BlurInputProps {
@@ -8,15 +8,19 @@ export interface BlurInputProps {
   onChange?: (value?: string) => void;
   placeholder?: string;
   className?: string;
+  style?: CSSProperties;
   prefix?: ReactNode;
   addonAfter?: ReactNode;
   allowClear?: boolean;
   block?: boolean;
   size?: "small" | "middle";
   variant?: "filled" | "borderless";
+  rows?: number;
+  showCount?: boolean;
+  maxLength?: number;
 }
 
-const Component: FC<BlurInputProps> = ({ value, onChange, className, block, placeholder = BaseLang.requiredPrompt, ...others }) => {
+const Component: FC<BlurInputProps> = ({ value, onChange, className, block, placeholder = BaseLang.requiredPrompt, rows, prefix, ...others }) => {
   const [input, setInput] = useState(value);
 
   useMemo(() => {
@@ -35,7 +39,22 @@ const Component: FC<BlurInputProps> = ({ value, onChange, className, block, plac
     setInput(e.target.value.trim());
   });
 
-  return <Input {...others} className={classnames(className, { "ͼbaseflow-sr-inputBlock": block })} value={input} onChange={_onChange} placeholder={placeholder} onBlur={onSubmit} />;
+  if (rows) {
+    return (
+      <Input.TextArea
+        {...others}
+        prefix={prefix ? prefix.toString() : undefined}
+        className={classnames(className, { "ͼbaseflow-sr-inputBlock": block })}
+        value={input}
+        onChange={_onChange}
+        placeholder={placeholder}
+        onBlur={onSubmit}
+        rows={rows}
+      />
+    );
+  }
+
+  return <Input {...others} className={classnames(className, { "ͼbaseflow-sr-inputBlock": block })} prefix={prefix} value={input} onChange={_onChange} placeholder={placeholder} onBlur={onSubmit} />;
 };
 
 export default memo(Component);

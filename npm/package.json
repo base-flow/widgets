@@ -1,7 +1,7 @@
 {
   "name": "@baseflow/widgets",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "publishConfig": {
     "access": "public"
   },
@@ -21,11 +21,11 @@
     "chrome >= 80"
   ],
   "peerDependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "antd": "^5 || ^6",
+    "react": "^19",
+    "react-dom": "^19",
+    "antd": "^6",
     "dayjs": "*",
-    "@baseflow/react": "^0.0.5"
+    "@baseflow/react": "*"
   },
   "dependencies": {
     "path-to-regexp": "^8.3.0"

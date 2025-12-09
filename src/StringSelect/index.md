@@ -30,6 +30,7 @@ group:
 | block | `boolean` |       |           |  展示为宽度100%的块级元素   |
 | placeholder | `string` |
 | className | `string` |
+| style | `CSSProperties` |
 | prefix | `ReactNode` |
 | allowClear | `boolean` |
 | size       | `"small" \| "middle"` |

@@ -1,6 +1,6 @@
 import { BaseLang, classnames } from "@baseflow/react";
 import { Select } from "antd";
-import type { FocusEventHandler, ReactNode } from "react";
+import type { CSSProperties, FocusEventHandler, ReactNode } from "react";
 import { memo } from "react";
 
 export interface StringSelectProps<V extends string | string[]> {
@@ -12,6 +12,7 @@ export interface StringSelectProps<V extends string | string[]> {
   onBlur?: FocusEventHandler<HTMLElement>;
   placeholder?: string;
   className?: string;
+  style?: CSSProperties;
   showSearch?: boolean;
   prefix?: ReactNode;
   allowClear?: boolean;

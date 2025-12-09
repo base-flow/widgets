@@ -21,6 +21,12 @@ export default () => {
           <BlurInput variant="borderless" value="borderless" />
         </div>
       </div>
+      <div className="form-item">
+        <div className="label-item">Textarea</div>
+        <div>
+          <BlurInput rows={8} />
+        </div>
+      </div>
     </div>
   );
 };

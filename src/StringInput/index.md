@@ -26,7 +26,11 @@ group:
 | onChange | `(value?: string) => void` |
 | block | `boolean` |       |           |  展示为宽度100%的块级元素   |
 | placeholder | `string` |
+| rows | `number` |    |   |   如果大于0则渲染为<Input.TextArea />     |
+| showCount | `boolean` |    |   |   是否显示已输入字数     |
+| maxLength | `number` |
 | className | `string` |
+| style | `CSSProperties` |
 | prefix | `ReactNode` |
 | addonAfter | `ReactNode` |
 | allowClear | `boolean` |

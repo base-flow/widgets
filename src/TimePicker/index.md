@@ -1,18 +1,18 @@
 ---
 category: Components
-title: BlurInput
+title: TimePicker
 toc: false 
-order: 3
+order: 5
 group:
   title: 基础组件 
   order: 1 
 ---
 
-# BlurInput 输入框
+# TimePicker 时间选择
 
 ## 介绍
 
-封装`Antd`的`Input`输入框组件，`onChange`参数value值改为`String`类型、触发时机改为失去焦点。
+封装`Antd`的`TimePicker`选择框组件，`value`仅支持`string`类型，格式为`HH:mm:ss`。
 
 ## 示例
 
@@ -23,16 +23,14 @@ group:
 | 属性   | 类型                     | 默认值   | 必填 | 说明 |
 | ------ | ---------------------- | -------- | ---- | ---- |
 | value  | `string \| undefined`      |
-| onChange | `(value?: string) => void` |    |   |   失去焦点时触发      |
+| onChange | `(value?: string) => void` |
 | block | `boolean` |       |           |  展示为宽度100%的块级元素   |
 | placeholder | `string` |
-| rows | `number` |    |   |   如果大于0则渲染为<Input.TextArea />     |
-| showCount | `boolean` |    |   |   是否显示已输入字数     |
-| maxLength | `number` |
 | className | `string` |
 | style | `CSSProperties` |
 | prefix | `ReactNode` |
-| addonAfter | `ReactNode` |
 | allowClear | `boolean` |
 | size       | `"small" \| "middle"` |
 | variant    | `"filled" \| "borderless"` |
+| onFocus    | `(e: FocusEvent) => void` |
+| onBlur    | `(e: FocusEvent) => void` |

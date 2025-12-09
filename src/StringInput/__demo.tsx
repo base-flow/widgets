@@ -21,6 +21,12 @@ export default () => {
           <StringInput variant="borderless" value="borderless" />
         </div>
       </div>
+      <div className="form-item">
+        <div className="label-item">Textarea</div>
+        <div>
+          <StringInput rows={8} />
+        </div>
+      </div>
     </div>
   );
 };

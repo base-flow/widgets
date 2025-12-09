@@ -1,5 +1,5 @@
 import * as react from 'react';
-import { ReactNode, FocusEventHandler } from 'react';
+import { CSSProperties, ReactNode, FocusEventHandler, MouseEvent } from 'react';
 import { AlignCenterOutlined, AlignLeftOutlined, AlignRightOutlined, AlipayCircleOutlined, AndroidOutlined, AppleOutlined, AreaChartOutlined, ArrowDownOutlined, ArrowLeftOutlined, ArrowRightOutlined, ArrowUpOutlined, ArrowsAltOutlined, BackwardOutlined, BarChartOutlined, CaretDownOutlined, CaretLeftOutlined, CaretRightOutlined, CaretUpOutlined, CheckCircleFilled, CheckCircleOutlined, CheckOutlined, CheckSquareFilled, CheckSquareOutlined, ClockCircleFilled, ClockCircleOutlined, CloseCircleFilled, CloseCircleOutlined, CloseOutlined, CloseSquareFilled, CloseSquareOutlined, ColumnHeightOutlined, ColumnWidthOutlined, CopyOutlined, DeleteOutlined, DockerOutlined, DotChartOutlined, DoubleLeftOutlined, DoubleRightOutlined, DownCircleFilled, DownCircleOutlined, DownOutlined, DownSquareOutlined, DragOutlined, EditOutlined, ExclamationCircleFilled, ExclamationCircleOutlined, FontColorsOutlined, FormOutlined, ForwardOutlined, FullscreenExitOutlined, FullscreenOutlined, GithubOutlined, InfoCircleFilled, InfoCircleOutlined, IssuesCloseOutlined, LeftCircleFilled, LeftCircleOutlined, LeftOutlined, LeftSquareOutlined, LineChartOutlined, LoginOutlined, LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, MinusCircleFilled, MinusCircleOutlined, MinusOutlined, MinusSquareFilled, MinusSquareOutlined, OpenAIOutlined, OrderedListOutlined, PauseCircleFilled, PauseCircleOutlined, PauseOutlined, PicCenterOutlined, PicLeftOutlined, PicRightOutlined, PieChartOutlined, PlayCircleFilled, PlayCircleOutlined, PlusCircleFilled, PlusCircleOutlined, PlusOutlined, PlusSquareFilled, PlusSquareOutlined, QqOutlined, QuestionCircleFilled, QuestionCircleOutlined, QuestionOutlined, RedditOutlined, RedoOutlined, RetweetOutlined, RightCircleFilled, RightCircleOutlined, RightOutlined, RightSquareOutlined, ScissorOutlined, ShrinkOutlined, SlidersOutlined, SnippetsOutlined, SortAscendingOutlined, SortDescendingOutlined, StopFilled, StopOutlined, SwapOutlined, TikTokOutlined, UndoOutlined, UnorderedListOutlined, UpCircleFilled, UpCircleOutlined, UpOutlined, UpSquareOutlined, WarningFilled, WarningOutlined, WechatOutlined, WhatsAppOutlined, WindowsOutlined, YoutubeOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
 import { compile, match, parse, pathToRegexp, stringify } from 'path-to-regexp';
 
@@ -8,14 +8,44 @@ interface BlurInputProps {
     onChange?: (value?: string) => void;
     placeholder?: string;
     className?: string;
+    style?: CSSProperties;
     prefix?: ReactNode;
     addonAfter?: ReactNode;
     allowClear?: boolean;
     block?: boolean;
     size?: "small" | "middle";
     variant?: "filled" | "borderless";
+    rows?: number;
+    showCount?: boolean;
+    maxLength?: number;
 }
-declare const _default$2: react.NamedExoticComponent<BlurInputProps>;
+declare const _default$5: react.NamedExoticComponent<BlurInputProps>;
+
+interface DatePickerProps {
+    value?: string;
+    onChange?: (value?: string) => void;
+    onFocus?: FocusEventHandler<HTMLElement>;
+    onBlur?: FocusEventHandler<HTMLElement>;
+    placeholder?: string;
+    showTime?: boolean;
+    className?: string;
+    style?: CSSProperties;
+    prefix?: ReactNode;
+    allowClear?: boolean;
+    block?: boolean;
+    size?: "small" | "middle";
+    variant?: "filled" | "borderless";
+}
+declare const _default$4: react.NamedExoticComponent<DatePickerProps>;
+
+interface DescMDProps {
+    value?: string;
+    className?: string;
+    style?: CSSProperties;
+    onClick?: (e: MouseEvent) => void;
+    onClickCapture?: (e: MouseEvent) => void;
+}
+declare const _default$3: react.NamedExoticComponent<DescMDProps>;
 
 /** biome-ignore-all assist/source/organizeImports: <> */
 
@@ -158,14 +188,18 @@ interface StringInputProps {
     onBlur?: FocusEventHandler<HTMLElement>;
     placeholder?: string;
     className?: string;
+    style?: CSSProperties;
     prefix?: ReactNode;
     addonAfter?: ReactNode;
     allowClear?: boolean;
     block?: boolean;
     size?: "small" | "middle";
     variant?: "filled" | "borderless";
+    rows?: number;
+    showCount?: boolean;
+    maxLength?: number;
 }
-declare const _default$1: react.NamedExoticComponent<StringInputProps>;
+declare const _default$2: react.NamedExoticComponent<StringInputProps>;
 
 interface StringSelectProps<V extends string | string[]> {
     value?: V;
@@ -179,6 +213,7 @@ interface StringSelectProps<V extends string | string[]> {
     onBlur?: FocusEventHandler<HTMLElement>;
     placeholder?: string;
     className?: string;
+    style?: CSSProperties;
     showSearch?: boolean;
     prefix?: ReactNode;
     allowClear?: boolean;
@@ -187,6 +222,22 @@ interface StringSelectProps<V extends string | string[]> {
     variant?: "filled" | "borderless";
 }
 declare const Component: <V extends string | string[]>(props: StringSelectProps<V>) => ReactNode;
-declare const _default: typeof Component;
+declare const _default$1: typeof Component;
 
-export { _default$2 as BlurInput, type BlurInputProps, index as Icons, PathToRegexp, _default$1 as StringInput, type StringInputProps, _default as StringSelect, type StringSelectProps };
+interface TimePickerProps {
+    value?: string;
+    onChange?: (value?: string) => void;
+    onFocus?: FocusEventHandler<HTMLElement>;
+    onBlur?: FocusEventHandler<HTMLElement>;
+    placeholder?: string;
+    className?: string;
+    style?: CSSProperties;
+    prefix?: ReactNode;
+    allowClear?: boolean;
+    block?: boolean;
+    size?: "small" | "middle";
+    variant?: "filled" | "borderless";
+}
+declare const _default: react.NamedExoticComponent<TimePickerProps>;
+
+export { _default$5 as BlurInput, type BlurInputProps, _default$4 as DatePicker, type DatePickerProps, _default$3 as DescMD, type DescMDProps, index as Icons, PathToRegexp, _default$2 as StringInput, type StringInputProps, _default$1 as StringSelect, type StringSelectProps, _default as TimePicker, type TimePickerProps };

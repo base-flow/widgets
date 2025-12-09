@@ -65,6 +65,7 @@
     "@baseflow/react": true
   },
   "dependencies": {
+    "markdown-to-jsx": "^9.3.3",
     "path-to-regexp": "^8.3.0"
   },
   "devDependencies": {
