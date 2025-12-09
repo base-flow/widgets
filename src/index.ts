@@ -10,5 +10,7 @@ export type { StringInputProps } from "./StringInput";
 export { default as StringInput } from "./StringInput";
 export type { StringSelectProps } from "./StringSelect";
 export { default as StringSelect } from "./StringSelect";
+export type { TextAreaProps } from "./TextArea";
+export { default as TextArea } from "./TextArea";
 export type { TimePickerProps } from "./TimePicker";
 export { default as TimePicker } from "./TimePicker";

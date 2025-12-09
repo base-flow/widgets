@@ -1,9 +1,9 @@
 import { BaseLang, classnames } from "@baseflow/react";
 import { Input } from "antd";
-import type { CSSProperties, FC, FocusEventHandler, ReactNode } from "react";
+import type { CSSProperties, FC, FocusEventHandler } from "react";
 import { memo } from "react";
 
-export interface StringInputProps {
+export interface TextAreaProps {
   value?: string;
   onChange?: (value?: string) => void;
   onFocus?: FocusEventHandler<HTMLElement>;
@@ -11,8 +11,7 @@ export interface StringInputProps {
   placeholder?: string;
   className?: string;
   style?: CSSProperties;
-  prefix?: ReactNode;
-  addonAfter?: ReactNode;
+  prefix?: string;
   allowClear?: boolean;
   block?: boolean;
   size?: "small" | "middle";
@@ -22,26 +21,13 @@ export interface StringInputProps {
   maxLength?: number;
 }
 
-const Component: FC<StringInputProps> = ({ onChange, className, block, placeholder = BaseLang.requiredPrompt, prefix, rows, ...others }) => {
-  if (rows) {
-    return (
-      <Input.TextArea
-        {...others}
-        className={classnames(className, { "ͼbaseflow-sr-inputBlock": block })}
-        placeholder={placeholder}
-        onChange={(e) => onChange?.(e.target.value.trim())}
-        rows={rows}
-        prefix={prefix ? prefix.toString() : undefined}
-      />
-    );
-  }
+const Component: FC<TextAreaProps> = ({ onChange, className, block, placeholder = BaseLang.requiredPrompt, ...others }) => {
   return (
-    <Input
+    <Input.TextArea
       {...others}
       className={classnames(className, { "ͼbaseflow-sr-inputBlock": block })}
       placeholder={placeholder}
       onChange={(e) => onChange?.(e.target.value.trim())}
-      prefix={prefix}
     />
   );
 };

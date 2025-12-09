@@ -19,7 +19,7 @@ interface BlurInputProps {
     showCount?: boolean;
     maxLength?: number;
 }
-declare const _default$5: react.NamedExoticComponent<BlurInputProps>;
+declare const _default$6: react.NamedExoticComponent<BlurInputProps>;
 
 interface DatePickerProps {
     value?: string;
@@ -36,7 +36,7 @@ interface DatePickerProps {
     size?: "small" | "middle";
     variant?: "filled" | "borderless";
 }
-declare const _default$4: react.NamedExoticComponent<DatePickerProps>;
+declare const _default$5: react.NamedExoticComponent<DatePickerProps>;
 
 interface DescMDProps {
     value?: string;
@@ -45,7 +45,7 @@ interface DescMDProps {
     onClick?: (e: MouseEvent) => void;
     onClickCapture?: (e: MouseEvent) => void;
 }
-declare const _default$3: react.NamedExoticComponent<DescMDProps>;
+declare const _default$4: react.NamedExoticComponent<DescMDProps>;
 
 /** biome-ignore-all assist/source/organizeImports: <> */
 
@@ -199,7 +199,7 @@ interface StringInputProps {
     showCount?: boolean;
     maxLength?: number;
 }
-declare const _default$2: react.NamedExoticComponent<StringInputProps>;
+declare const _default$3: react.NamedExoticComponent<StringInputProps>;
 
 interface StringSelectProps<V extends string | string[]> {
     value?: V;
@@ -222,7 +222,26 @@ interface StringSelectProps<V extends string | string[]> {
     variant?: "filled" | "borderless";
 }
 declare const Component: <V extends string | string[]>(props: StringSelectProps<V>) => ReactNode;
-declare const _default$1: typeof Component;
+declare const _default$2: typeof Component;
+
+interface TextAreaProps {
+    value?: string;
+    onChange?: (value?: string) => void;
+    onFocus?: FocusEventHandler<HTMLElement>;
+    onBlur?: FocusEventHandler<HTMLElement>;
+    placeholder?: string;
+    className?: string;
+    style?: CSSProperties;
+    prefix?: string;
+    allowClear?: boolean;
+    block?: boolean;
+    size?: "small" | "middle";
+    variant?: "filled" | "borderless";
+    rows?: number;
+    showCount?: boolean;
+    maxLength?: number;
+}
+declare const _default$1: react.NamedExoticComponent<TextAreaProps>;
 
 interface TimePickerProps {
     value?: string;
@@ -240,4 +259,4 @@ interface TimePickerProps {
 }
 declare const _default: react.NamedExoticComponent<TimePickerProps>;
 
-export { _default$5 as BlurInput, type BlurInputProps, _default$4 as DatePicker, type DatePickerProps, _default$3 as DescMD, type DescMDProps, index as Icons, PathToRegexp, _default$2 as StringInput, type StringInputProps, _default$1 as StringSelect, type StringSelectProps, _default as TimePicker, type TimePickerProps };
+export { _default$6 as BlurInput, type BlurInputProps, _default$5 as DatePicker, type DatePickerProps, _default$4 as DescMD, type DescMDProps, index as Icons, PathToRegexp, _default$3 as StringInput, type StringInputProps, _default$2 as StringSelect, type StringSelectProps, _default$1 as TextArea, type TextAreaProps, _default as TimePicker, type TimePickerProps };
