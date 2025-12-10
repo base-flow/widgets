@@ -45,7 +45,7 @@ const BabelESMConfig = {
       },
     ],
   ],
-  plugins: [["babel-plugin-react-compiler", { target: "18" }]],
+  plugins: [["babel-plugin-react-compiler"]],
 };
 
 const BabelUMDConfig = {
@@ -64,14 +64,6 @@ const ESMConfig = {
     file: "npm/dist/esm/index.js",
     format: "esm",
     sourcemap: false,
-    globals: {
-      react: "React",
-      "react-dom": "ReactDOM",
-      dayjs: "dayjs",
-      antd: "antd",
-      "@baseflow/react": "Baseflow",
-      "react/jsx-runtime": "reactCompilerRuntime",
-    },
   },
   external: (id) => {
     if (esmExternals[id]) {

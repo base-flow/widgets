@@ -51,11 +51,11 @@
     ]
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "antd": "^6.0.0",
+    "react": "^19",
+    "react-dom": "^19",
+    "antd": "^6",
     "dayjs": "*",
-    "@baseflow/react": "^0.0.5"
+    "@baseflow/react": "*"
   },
   "dependencies": {
     "markdown-to-jsx": "^9.3.3",
@@ -64,8 +64,8 @@
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
     "@biomejs/biome": "2.3.8",
     "autoprefixer": "^10.4.22",
     "postcss": "^8.5.6",
@@ -106,9 +106,9 @@
     "rollup-plugin-web-worker-loader": "~1.7.0",
     "tsup": "^8.5.1",
     "rimraf": "^6.1.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "antd": "^6.0.0",
-    "@baseflow/react": "^0.0.6"
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "antd": "^6.1.0",
+    "@baseflow/react": "^0.0.7"
   }
 }
