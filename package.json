@@ -57,13 +57,6 @@
     "dayjs": "*",
     "@baseflow/react": "^0.0.5"
   },
-  "externals": {
-    "react": true,
-    "react-dom": true,
-    "antd": true,
-    "dayjs": true,
-    "@baseflow/react": true
-  },
   "dependencies": {
     "markdown-to-jsx": "^9.3.3",
     "path-to-regexp": "^8.3.0"
@@ -89,8 +82,14 @@
     "father": "^4.1.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-react": "^7.28.5",
+    "@babel/preset-typescript": "^7.28.5",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "core-js": "^3",
     "@rollup/plugin-alias": "~5.1.1",
-    "@rollup/plugin-babel": "~6.0.4 ",
+    "@rollup/plugin-babel": "~6.1.0",
     "@rollup/plugin-commonjs": "~ 28.0.6",
     "@rollup/plugin-node-resolve": "~16.0.1",
     "@rollup/plugin-replace": "~6.0.2",

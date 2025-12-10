@@ -1,14 +1,12 @@
+import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
 import url from "@rollup/plugin-url";
 import autoprefixer from "autoprefixer";
-import chalk from "chalk";
 import del from "rollup-plugin-delete";
-import esbuild from "rollup-plugin-esbuild";
 import postcss from "rollup-plugin-postcss";
-import sass from "sass";
 import pkg from "./package.json" with { type: "json" };
 
 // import alias from '@rollup/plugin-alias';
@@ -25,60 +23,81 @@ function stripUseClient() {
   };
 }
 
-const externals = Object.keys(pkg.externals || {});
-const pkgResult = { include: {}, external: {} };
+const extensions = [".js", ".ts", ".tsx", ".jsx"];
+const esmExternals = { ...pkg.peerDependencies, "react/jsx-runtime": true };
+const umdExternals = { ...pkg.peerDependencies };
+const externalResult = { esm: {}, umd: {} };
 
-export default {
-  input: "src/index.ts",
-  output: [
-    {
-      file: "npm/dist/esm/index.js",
-      format: "esm",
-      sourcemap: false,
-    },
-    {
-      file: "npm/dist/umd/index.js",
-      format: "umd",
-      sourcemap: false,
-      name: "BaseflowWidgets",
-      globals: {
-        react: "React",
-        "react-dom": "ReactDOM",
-        dayjs: "dayjs",
-        antd: "antd",
-        "@baseflow/react": "Baseflow",
+const BabelESMConfig = {
+  babelHelpers: "bundled",
+  extensions,
+  exclude: "node_modules/**",
+  presets: [
+    ["@babel/preset-react", { runtime: "automatic" }],
+    ["@babel/preset-typescript", { allowDeclareFields: true }],
+    [
+      "@babel/preset-env",
+      {
+        targets: { chrome: "100" },
+        useBuiltIns: "usage",
+        corejs: 3,
+        modules: false,
       },
-    },
+    ],
   ],
-  external: (id) => {
-    const hit = externals.some((mod) => mod === id || id.startsWith(`${mod}/`));
-    if (hit) {
-      if (!pkgResult.external[id]) {
-        pkgResult.external[id] = true;
-        console.warn(chalk.red("external: "), id);
-      }
-    } else if (!pkgResult.include[id]) {
-      pkgResult.include[id] = true;
-      console.warn(chalk.green("include: "), id);
+  plugins: [["babel-plugin-react-compiler", { target: "18" }]],
+};
+
+const BabelUMDConfig = {
+  ...BabelESMConfig,
+  presets: BabelESMConfig.presets.map((item) => {
+    if (item[0] === "@babel/preset-react") {
+      return ["@babel/preset-react", { runtime: "classic" }];
     }
-    return hit;
+    return item;
+  }),
+};
+
+const ESMConfig = {
+  input: "src/index.ts",
+  output: {
+    file: "npm/dist/esm/index.js",
+    format: "esm",
+    sourcemap: false,
+    globals: {
+      react: "React",
+      "react-dom": "ReactDOM",
+      dayjs: "dayjs",
+      antd: "antd",
+      "@baseflow/react": "Baseflow",
+      "react/jsx-runtime": "reactCompilerRuntime",
+    },
+  },
+  external: (id) => {
+    if (esmExternals[id]) {
+      if (!externalResult.esm[id]) {
+        externalResult.esm[id] = true;
+      }
+      return true;
+    }
+    if (id.startsWith("react-dom/client")) {
+      console.error("included react-dom/client");
+    }
+    return undefined;
   },
   plugins: [
     del({ targets: "dist" }),
-    resolve({ browser: true }),
+    resolve({ extensions, browser: true }),
     replace({
       "process.env.NODE_ENV": JSON.stringify("production"),
       preventAssignment: true,
     }),
     commonjs(),
     stripUseClient(),
-    esbuild({
-      target: "es2020",
-      tsconfig: "tsconfig.umd.json",
-      // minify: true,
-    }),
     url({
       include: ["**/*.svg", "**/*.png", "**/*.jpg", "**/*.jpeg", "**/*.gif"],
+      limit: 10 * 1024, // <10kb 转 base64
+      emitFiles: true,
     }),
     postcss({
       modules: false, // css-module
@@ -87,9 +106,18 @@ export default {
       sourceMap: false,
       url: { maxSize: 20 * 1024 },
       extensions: [".scss", ".css"],
-      use: { sass: sass },
+      use: [
+        [
+          "sass",
+          {
+            // 在这里屏蔽特定的废弃警告
+            silenceDeprecations: ["legacy-js-api"],
+          },
+        ],
+      ],
       plugins: [autoprefixer()],
     }),
+    babel(BabelESMConfig),
     terser({
       // 压缩选项
       compress: {
@@ -103,5 +131,47 @@ export default {
         comments: false, // 移除注释
       },
     }),
+    {
+      name: "custom-end",
+      closeBundle() {
+        console.log("--------------------------------------------------");
+        console.log(externalResult);
+      },
+    },
   ],
 };
+
+export default [
+  ESMConfig,
+  {
+    ...ESMConfig,
+    output: {
+      file: "npm/dist/umd/index.js",
+      format: "umd",
+      sourcemap: false,
+      name: "BaseflowWidgets",
+      globals: {
+        react: "React",
+        "react-dom": "ReactDOM",
+        dayjs: "dayjs",
+        antd: "antd",
+        "@baseflow/react": "Baseflow",
+      },
+    },
+    external: (id) => {
+      if (umdExternals[id]) {
+        if (!externalResult.umd[id]) {
+          externalResult.umd[id] = true;
+        }
+        return true;
+      }
+      return undefined;
+    },
+    plugins: ESMConfig.plugins.map((item, n) => {
+      if (item.name === "babel") {
+        return babel(BabelUMDConfig);
+      }
+      return item;
+    }),
+  },
+];
