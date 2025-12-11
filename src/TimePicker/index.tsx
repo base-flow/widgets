@@ -1,8 +1,8 @@
-import { classnames } from "@baseflow/react";
 import { TimePicker } from "antd";
 import dayjs from "dayjs";
 import type { CSSProperties, FC, FocusEventHandler, ReactNode } from "react";
 import { memo, useMemo } from "react";
+import { classnames } from "../utils";
 
 export interface TimePickerProps {
   value?: string;

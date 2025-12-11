@@ -1,7 +1,7 @@
-import { BaseLang, classnames, useEvent } from "@baseflow/react";
 import { Input } from "antd";
 import type { CSSProperties, FC, ReactNode } from "react";
 import { memo, useMemo, useState } from "react";
+import { BaseLang, classnames, useEvent } from "../utils";
 
 export interface BlurInputProps {
   value?: string;
@@ -54,7 +54,17 @@ const Component: FC<BlurInputProps> = ({ value, onChange, className, block, plac
     );
   }
 
-  return <Input {...others} className={classnames(className, { "ͼbaseflow-sr-inputBlock": block })} prefix={prefix} value={input} onChange={_onChange} placeholder={placeholder} onBlur={onSubmit} />;
+  return (
+    <Input
+      {...others}
+      className={classnames(className, { "ͼbaseflow-sr-inputBlock": block })}
+      prefix={prefix}
+      value={input}
+      onChange={_onChange}
+      placeholder={placeholder}
+      onBlur={onSubmit}
+    />
+  );
 };
 
 export default memo(Component);

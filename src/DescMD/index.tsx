@@ -1,7 +1,7 @@
-import { classnames } from "@baseflow/react";
 import Markdown from "markdown-to-jsx";
 import type { CSSProperties, FC, MouseEvent } from "react";
 import { memo } from "react";
+import { classnames } from "../utils";
 
 export interface DescMDProps {
   value?: string;

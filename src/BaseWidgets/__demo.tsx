@@ -1,11 +1,10 @@
-import { BaseWidgets } from "@baseflow/react";
 import { Button } from "antd";
-import Config from "./__utils";
+import { BaseWidgets, FlowProvider } from "../utils";
 
 export default () => {
   return (
-    /** <Config>节点开发中平台已包含 */
-    <Config>
+    /** <FlowProvider>节点开发中平台已包含 */
+    <FlowProvider>
       <div className="nd-grad-layout">
         <Button
           onClick={() => {
@@ -86,6 +85,6 @@ export default () => {
           modal
         </Button>
       </div>
-    </Config>
+    </FlowProvider>
   );
 };

@@ -1,7 +1,7 @@
-import { BaseLang, classnames } from "@baseflow/react";
 import { Input } from "antd";
 import type { CSSProperties, FC, FocusEventHandler, ReactNode } from "react";
 import { memo } from "react";
+import { BaseLang, classnames } from "../utils";
 
 export interface StringInputProps {
   value?: string;

@@ -1,7 +1,7 @@
-import { BaseLang, classnames } from "@baseflow/react";
 import { Select } from "antd";
 import type { CSSProperties, FocusEventHandler, ReactNode } from "react";
 import { memo } from "react";
+import { BaseLang, classnames } from "../utils";
 
 export interface StringSelectProps<V extends string | string[]> {
   value?: V;
@@ -24,7 +24,15 @@ export interface StringSelectProps<V extends string | string[]> {
 const Component = <V extends string | string[]>(props: StringSelectProps<V>): ReactNode => {
   const { value, className, block, multiple, placeholder = BaseLang.requiredPrompt, ...others } = props;
 
-  return <Select {...others} value={value || undefined} mode={multiple ? "multiple" : undefined} placeholder={placeholder} className={classnames(className, { "ͼbaseflow-sr-inputBlock": block })} />;
+  return (
+    <Select
+      {...others}
+      value={value || undefined}
+      mode={multiple ? "multiple" : undefined}
+      placeholder={placeholder}
+      className={classnames(className, { "ͼbaseflow-sr-inputBlock": block })}
+    />
+  );
 };
 
 export default memo(Component) as typeof Component;

@@ -1,7 +1,7 @@
-import { BaseWidgets, useEvent } from "@baseflow/react";
 import { Icons } from "@baseflow/widgets";
 import type { MouseEvent } from "react";
-import Config, { IconList } from "./__utils";
+import { BaseWidgets, FlowProvider, useEvent } from "../utils";
+import { IconList } from "./__utils";
 
 export default () => {
   const onApply = useEvent((e: MouseEvent) => {
@@ -14,8 +14,8 @@ export default () => {
   });
 
   return (
-    /** <Config>节点开发中平台已包含 */
-    <Config>
+    /** <FlowProvider>节点开发中平台已包含 */
+    <FlowProvider>
       <div className="nd-grad-layout" onClick={onApply}>
         {IconList.map((key) => {
           const Item = (Icons as any)[key];
@@ -27,6 +27,6 @@ export default () => {
           );
         })}
       </div>
-    </Config>
+    </FlowProvider>
   );
 };

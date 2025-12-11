@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!**/src/routeTree.gen.ts", "!app/public"]
+    "includes": ["**", "!**/dist"]
   },
   "formatter": {
     "enabled": true,
@@ -21,6 +21,9 @@
       "recommended": true,
       "style": {
         "noNonNullAssertion": "off"
+      },
+      "complexity": {
+        "noBannedTypes": "off"
       },
       "suspicious": {
         "noExplicitAny": "off"

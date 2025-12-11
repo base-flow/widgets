@@ -24,39 +24,9 @@ function stripUseClient() {
 }
 
 const extensions = [".js", ".ts", ".tsx", ".jsx"];
-const esmExternals = { ...pkg.peerDependencies, "react/jsx-runtime": true };
+const esmExternals = { ...pkg.peerDependencies, "react/jsx-runtime": true, "react/compiler-runtime": true };
 const umdExternals = { ...pkg.peerDependencies };
 const externalResult = { esm: {}, umd: {} };
-
-const BabelESMConfig = {
-  babelHelpers: "bundled",
-  extensions,
-  exclude: "node_modules/**",
-  presets: [
-    ["@babel/preset-react", { runtime: "automatic" }],
-    ["@babel/preset-typescript", { allowDeclareFields: true }],
-    [
-      "@babel/preset-env",
-      {
-        targets: { chrome: "100" },
-        useBuiltIns: "usage",
-        corejs: 3,
-        modules: false,
-      },
-    ],
-  ],
-  plugins: [["babel-plugin-react-compiler"]],
-};
-
-const BabelUMDConfig = {
-  ...BabelESMConfig,
-  presets: BabelESMConfig.presets.map((item) => {
-    if (item[0] === "@babel/preset-react") {
-      return ["@babel/preset-react", { runtime: "classic" }];
-    }
-    return item;
-  }),
-};
 
 const ESMConfig = {
   input: "src/index.ts",
@@ -109,7 +79,25 @@ const ESMConfig = {
       ],
       plugins: [autoprefixer()],
     }),
-    babel(BabelESMConfig),
+    babel({
+      extensions,
+      exclude: "node_modules/**",
+      babelHelpers: "bundled",
+      presets: [
+        ["@babel/preset-react", { runtime: "classic" }],
+        ["@babel/preset-typescript", { allowDeclareFields: true }],
+        [
+          "@babel/preset-env",
+          {
+            targets: { chrome: "100" },
+            useBuiltIns: "usage",
+            corejs: 3,
+            modules: false,
+          },
+        ],
+      ],
+      plugins: [["babel-plugin-react-compiler"]],
+    }),
     terser({
       // 压缩选项
       compress: {
@@ -159,11 +147,5 @@ export default [
       }
       return undefined;
     },
-    plugins: ESMConfig.plugins.map((item, n) => {
-      if (item.name === "babel") {
-        return babel(BabelUMDConfig);
-      }
-      return item;
-    }),
   },
 ];
