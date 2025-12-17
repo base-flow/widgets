@@ -12,7 +12,7 @@ import pkg from "./package.json" with { type: "json" };
 // import alias from '@rollup/plugin-alias';
 
 const extensions = [".js", ".ts", ".tsx", ".jsx"];
-const esmExternals = { ...pkg.peerDependencies, "react/jsx-runtime": true, "react/compiler-runtime": true };
+const esmExternals = { ...pkg.peerDependencies, "react/compiler-runtime": true }; //  "react/jsx-runtime": true,;
 const umdExternals = { ...pkg.peerDependencies };
 const externalResult = { esm: {}, umd: {} };
 
@@ -65,15 +65,18 @@ const ESMConfig = {
     format: "esm",
     sourcemap: false,
   },
-  external: (id) => {
+  external: (id, file) => {
+    if (id.startsWith("react-dom")) {
+      console.log("----", id, file);
+      if (id.startsWith("react-dom/client")) {
+        console.warn("included react-dom/client");
+      }
+    }
     if (esmExternals[id]) {
       if (!externalResult.esm[id]) {
         externalResult.esm[id] = true;
       }
       return true;
-    }
-    if (id.startsWith("react-dom/client")) {
-      console.error("included react-dom/client");
     }
     return undefined;
   },
