@@ -5,9 +5,16 @@ import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
 import url from "@rollup/plugin-url";
 import autoprefixer from "autoprefixer";
+import { replaceInFileSync } from "replace-in-file";
 import del from "rollup-plugin-delete";
 import postcss from "rollup-plugin-postcss";
 import pkg from "./package.json" with { type: "json" };
+
+replaceInFileSync({
+  files: "npm/package.json",
+  from: /"version": "[\d.]+?",/,
+  to: `"version": "${pkg.version}",`,
+});
 
 // import alias from '@rollup/plugin-alias';
 
@@ -63,6 +70,7 @@ const ESMConfig = {
   output: {
     file: "npm/dist/esm/index.js",
     format: "esm",
+    banner: `/*! version: ${pkg.version} */`,
     sourcemap: false,
   },
   external: (id, file) => {
@@ -123,7 +131,7 @@ const ESMConfig = {
       mangle: true,
       // 输出选项
       format: {
-        comments: false, // 移除注释
+        comments: /^! version:/,
       },
     }),
     {
@@ -143,6 +151,7 @@ export default [
     output: {
       file: "npm/dist/umd/index.js",
       format: "umd",
+      banner: `/*! version: ${pkg.version} */`,
       sourcemap: false,
       name: "BaseflowWidgets",
       globals: {
