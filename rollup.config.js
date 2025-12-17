@@ -11,6 +11,11 @@ import pkg from "./package.json" with { type: "json" };
 
 // import alias from '@rollup/plugin-alias';
 
+const extensions = [".js", ".ts", ".tsx", ".jsx"];
+const esmExternals = { ...pkg.peerDependencies, "react/jsx-runtime": true, "react/compiler-runtime": true };
+const umdExternals = { ...pkg.peerDependencies };
+const externalResult = { esm: {}, umd: {} };
+
 function stripUseClient() {
   return {
     name: "strip-use-client",
@@ -23,10 +28,35 @@ function stripUseClient() {
   };
 }
 
-const extensions = [".js", ".ts", ".tsx", ".jsx"];
-const esmExternals = { ...pkg.peerDependencies, "react/jsx-runtime": true, "react/compiler-runtime": true };
-const umdExternals = { ...pkg.peerDependencies };
-const externalResult = { esm: {}, umd: {} };
+const BabelESMConfig = {
+  extensions,
+  exclude: "node_modules/**",
+  babelHelpers: "bundled",
+  presets: [
+    ["@babel/preset-react", { runtime: "automatic" }],
+    ["@babel/preset-typescript", { allowDeclareFields: true }],
+    [
+      "@babel/preset-env",
+      {
+        targets: { chrome: "100" },
+        useBuiltIns: "usage",
+        corejs: 3,
+        modules: false,
+      },
+    ],
+  ],
+  plugins: [["babel-plugin-react-compiler"]],
+};
+
+const BabelUMDConfig = {
+  ...BabelESMConfig,
+  presets: BabelESMConfig.presets.map((item) => {
+    if (item[0] === "@babel/preset-react") {
+      return ["@babel/preset-react", { runtime: "classic" }];
+    }
+    return item;
+  }),
+};
 
 const ESMConfig = {
   input: "src/index.ts",
@@ -79,25 +109,7 @@ const ESMConfig = {
       ],
       plugins: [autoprefixer()],
     }),
-    babel({
-      extensions,
-      exclude: "node_modules/**",
-      babelHelpers: "bundled",
-      presets: [
-        ["@babel/preset-react", { runtime: "classic" }],
-        ["@babel/preset-typescript", { allowDeclareFields: true }],
-        [
-          "@babel/preset-env",
-          {
-            targets: { chrome: "100" },
-            useBuiltIns: "usage",
-            corejs: 3,
-            modules: false,
-          },
-        ],
-      ],
-      plugins: [["babel-plugin-react-compiler"]],
-    }),
+    babel(BabelESMConfig),
     terser({
       // 压缩选项
       compress: {
@@ -138,6 +150,12 @@ export default [
         "@baseflow/react": "Baseflow",
       },
     },
+    plugins: ESMConfig.plugins.map((item, n) => {
+      if (item.name === "babel") {
+        return babel(BabelUMDConfig);
+      }
+      return item;
+    }),
     external: (id) => {
       if (umdExternals[id]) {
         if (!externalResult.umd[id]) {
