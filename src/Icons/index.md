@@ -16,7 +16,7 @@ group:
 
 ## 示例
 
-```
+```ts
 import { Icons } from "@baseflow/widgets";
 
 <Icons.AlignLeftOutlined />

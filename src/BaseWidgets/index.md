@@ -1,14 +1,16 @@
 ---
 category: Components
-title: BaseWidgets
+title: BaseWidgets*
 toc: false
-order: 1
+order: 2
 group:
-  title: 工具函数
+  title: 工具方法
   order: 2
 ---
 
 # BaseWidgets
+
+*本方法由`@baseflow/react`提供
 
 ## 介绍
 

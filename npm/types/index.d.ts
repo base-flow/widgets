@@ -205,6 +205,7 @@ interface StringSelectProps<V extends string | string[]> {
     value?: V;
     onChange?: (value?: V) => void;
     multiple?: boolean;
+    popupMatchSelectWidth?: boolean | number;
     options: Array<{
         value: string;
         label: string;

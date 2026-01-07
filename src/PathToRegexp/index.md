@@ -2,9 +2,9 @@
 category: Components
 title: PathToRegexp
 toc: false
-order: 2
+order: 1
 group:
-  title: 工具函数
+  title: 工具方法
   order: 2
 ---
 
@@ -12,7 +12,7 @@ group:
 
 ## 介绍
 
-Url路径模式匹配，集成自`path-to-regexp@8.3.0`
+Url路径模式匹配，集成自`path-to-regexp@8.3.0`，详细说明见`path-to-regexp`。
 
 ## 示例
 

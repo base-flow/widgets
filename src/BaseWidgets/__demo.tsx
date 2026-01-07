@@ -1,5 +1,6 @@
+import { BaseWidgets } from "@baseflow/react";
 import { Button } from "antd";
-import { BaseWidgets, FlowProvider } from "../utils";
+import { FlowProvider } from "../utils";
 
 export default () => {
   return (

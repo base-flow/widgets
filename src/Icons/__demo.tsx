@@ -1,6 +1,7 @@
+import { BaseWidgets, useEvent } from "@baseflow/react";
 import { Icons } from "@baseflow/widgets";
 import type { MouseEvent } from "react";
-import { BaseWidgets, FlowProvider, useEvent } from "../utils";
+import { FlowProvider } from "../utils";
 import { IconList } from "./__utils";
 
 export default () => {
