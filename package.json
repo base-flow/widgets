@@ -2,7 +2,7 @@
   "name": "@baseflow/widgets",
   "type": "module",
   "private": true,
-  "version": "0.0.12",
+  "version": "0.0.14",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -110,6 +110,6 @@
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
     "antd": "^6.1.0",
-    "@baseflow/react": "^0.0.31"
+    "@baseflow/react": "^0.0.33"
   }
 }
